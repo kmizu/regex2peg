@@ -4,6 +4,7 @@ object PEG {
   case class Grammar(rules: List[Rule])
   case class Rule(name: String, body: Exp)
   sealed abstract class Exp
+  case object Eps extends Exp
   case class Alt(lhs: Exp, rhs: Exp) extends Exp
   case class Cat(lhs: Exp, rhs: Exp) extends Exp
   case class Chr(value: Char) extends Exp
