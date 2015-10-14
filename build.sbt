@@ -6,6 +6,7 @@ version := "0.0.1"
 
 scalaVersion := "2.11.7"
 
+
 assemblyJarName in assembly := "regex2peg.jar"
 
 mainClass in assembly := Some("com.github.kmizu.regex2peg.Main")
@@ -65,7 +66,10 @@ credentials ++= {
 
 publishMavenStyle := true
 
-scalacOptions ++= Seq("-deprecation","-unchecked")
+scalacOptions ++= Seq(
+  "-deprecation","-unchecked",
+   "-encoding", "UTF-8"
+)
 
 initialCommands in console += {
   Iterator().map("import "+).mkString("\n")
