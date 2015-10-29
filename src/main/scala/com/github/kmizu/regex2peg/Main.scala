@@ -5,6 +5,6 @@ import Converter._
 
 object Main {
   def main(args: Array[String]): Unit = {
-    println(PEG.pretty(convert(Cat(Rep0(Alt(Cat(Chr('b'), Chr('a')), Chr('a'))), Chr('a')))._2))
+    println(PEG.pretty(convert(((Chr('b') ~ Chr('a')) | Chr('a')).* ~ Chr('a'))._2))
   }
 }

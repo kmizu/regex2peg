@@ -5,7 +5,11 @@ import scala.collection.mutable
 object PEG {
   case class Grammar(rules: List[Rule])
   case class Rule(name: String, body: Exp)
-  sealed abstract class Exp
+  sealed abstract class Exp {
+    def /(rhs: Exp): Alt = Alt(this, rhs)
+    def ~(rhs: Exp): Cat = Cat(this, rhs)
+    def * : Rep0 = Rep0(this)
+  }
   case object Eps extends Exp
   case class Alt(lhs: Exp, rhs: Exp) extends Exp
   case class Cat(lhs: Exp, rhs: Exp) extends Exp
@@ -17,7 +21,7 @@ object PEG {
     def p(exp: Exp): String = exp match {
       case Eps => "epsilon"
       case Chr(c) => s"'${c}'"
-      case Alt(e1, e2) => s"(${p(e1)}/${p(e2)})"
+      case Alt(e1, e2) => s"(${p(e1)} / ${p(e2)})"
       case Cat(e1, e2) => s"${p(e1)} ${p(e2)}"
       case Rep0(e) => s"(${p(e)})*"
       case NonTerminal(name) => name
