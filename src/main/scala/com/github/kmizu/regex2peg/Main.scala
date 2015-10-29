@@ -1,6 +1,6 @@
 package com.github.kmizu.regex2peg
 
-import REG._
+import Regexp._
 import Converter._
 
 object Main {

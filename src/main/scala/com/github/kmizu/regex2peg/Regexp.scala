@@ -1,6 +1,6 @@
 package com.github.kmizu.regex2peg
 
-object REG {
+object Regexp {
   case class Grammar(body: Exp)
   sealed abstract class Exp {
     def |(rhs: Exp): Alt = Alt(this, rhs)
