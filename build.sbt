@@ -4,8 +4,7 @@ name := "regex2peg"
 
 version := "0.0.1"
 
-scalaVersion := "2.11.7"
-
+scalaVersion := "2.11.12"
 
 assemblyJarName in assembly := "regex2peg.jar"
 
@@ -38,7 +37,8 @@ pomExtra := (
   </developers>
 )
 
-publishTo <<= version { v =>
+publishTo := {
+  val v = version.value
   val nexus = "https://oss.sonatype.org/"
   if (v.endsWith("-SNAPSHOT"))
     Some("snapshots" at nexus + "content/repositories/snapshots")
